@@ -1,0 +1,52 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": ".NET Core Build Solution",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                // Ask dotnet build to generate full paths for file names.
+                "/property:GenerateFullPaths=true",
+                // Do not generate summary otherwise it leads to duplicate errors in Problems panel
+                "/consoleloggerparameters:NoSummary",
+                "${workspaceFolder}/desktop/InstaBasicDisplayConsole.sln"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": ".NET Core Clean Solution",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}/desktop/InstaBasicDisplayConsole.sln"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": ".NET Core Run Tests",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "test",
+                "${workspaceFolder}/desktop/InstaBasicDisplayConsole.Tests/InstaBasicDisplayConsole.Tests.csproj"
+            ]
+        }
+    ]
+}
