@@ -4,11 +4,7 @@ using Newtonsoft.Json;
 
 namespace InstaBasicDisplayConsole.Data
 {
-<<<<<<< HEAD
     public sealed class Media : InstagramEntityBase
-=======
-    public sealed class Media
->>>>>>> 560b841f76a6544d1cffbdbb9dee33834bad531d
     {
         [JsonProperty("id")]
         public String Id { get; set; }
