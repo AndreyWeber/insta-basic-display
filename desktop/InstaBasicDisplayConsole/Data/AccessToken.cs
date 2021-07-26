@@ -4,11 +4,7 @@ using Newtonsoft.Json;
 
 namespace InstaBasicDisplayConsole.Data
 {
-<<<<<<< HEAD
     public sealed class AccessToken : InstagramEntityBase
-=======
-    public sealed class AccessToken
->>>>>>> 560b841f76a6544d1cffbdbb9dee33834bad531d
     {
         [JsonProperty("access_token")]
         public String Token { get; set; }
