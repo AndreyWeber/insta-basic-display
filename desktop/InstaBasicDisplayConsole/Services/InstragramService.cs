@@ -6,12 +6,13 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 using InstaBasicDisplayConsole.Data;
+using InstaBasicDisplayConsole.Services.Interfaces;
 
 namespace InstaBasicDisplayConsole.Services
 {
-    public class InstragramService
+    public class InstragramService : IInstagramService
     {
-        public async Task<T> GetEntity<T>(String uri) where T : InstagramEntityBase
+        public async Task<T> GetEntityAsync<T>(String uri) where T : InstagramEntityBase
         {
             if (String.IsNullOrWhiteSpace(uri))
             {
@@ -25,7 +26,7 @@ namespace InstaBasicDisplayConsole.Services
             return JsonConvert.DeserializeObject<T>(responseString);
         }
 
-        public async Task<T> GetEntity<T>(
+        public async Task<T> GetEntityAsync<T>(
             String uri,
             IDictionary<String, String> content) where T : InstagramEntityBase
         {
@@ -60,7 +61,7 @@ namespace InstaBasicDisplayConsole.Services
         //     return await httpClient.GetByteArrayAsync(uri);
         // }
 
-        public async IAsyncEnumerable<KeyValuePair<String, Byte[]>> GetMediaAsBytes(
+        public async IAsyncEnumerable<KeyValuePair<String, Byte[]>> GetMediaAsBytesAsync(
             IDictionary<String, String> mediaNameAndUrls)
         {
             if (mediaNameAndUrls is null)

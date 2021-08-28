@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using InstaBasicDisplayConsole.Data;
+using InstaBasicDisplayConsole.Repositories;
+using InstaBasicDisplayConsole.Services;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -43,6 +45,8 @@ namespace InstaBasicDisplayConsole
             const String InstagramAppSecret = "";
             const String RedirectUrl = "https://andreyweber.github.io/insta-basic-display/";
             const Int16 MediaRequestLimit = 100;
+
+            //var a = Directory.Exists("");
 
             Console.WriteLine("Starting browser...");
 
@@ -95,10 +99,11 @@ namespace InstaBasicDisplayConsole
                 var accessToken = JsonConvert.DeserializeObject<AccessToken>(responseString);
 
                 // Get user info using access token
-                var userInfoResponseString = await client.GetStringAsync($"https://graph.instagram.com/{accessToken.UserId}?" +
-                    $"fields=id,username,media_count&access_token={accessToken.Token}");
+                var instagramService = new InstragramService();
 
-                var user = JsonConvert.DeserializeObject<User>(userInfoResponseString);
+                var userRepository = new UserRepository(instagramService);
+
+                var user = await userRepository.GetUserAsync(accessToken);
 
                 // Get user media edge
                 // ! &limit= argument max value seems to be equal to 100

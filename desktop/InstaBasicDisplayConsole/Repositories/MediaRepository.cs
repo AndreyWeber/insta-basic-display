@@ -32,7 +32,7 @@ namespace InstaBasicDisplayConsole.Repositories
                 throw new DirectoryNotFoundException($"'{outputPath}' path not found");
             }
 
-            var mediaByteStreams = instragramService.GetMediaAsBytes(mediaNameAndUrls);
+            var mediaByteStreams = instragramService.GetMediaAsBytesAsync(mediaNameAndUrls);
             await foreach (var mediaBytes in mediaByteStreams)
             {
                 var mediaFilePath = Path.Combine(outputPath, mediaBytes.Key);
